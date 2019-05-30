@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+
+    
+
+message JWTToken {
+        
+  string    user = 1; 
+  string    token = 2;     
+}
+
+message JWTRequest {
+        
+  int64    v1 = 1; 
+  string    user = 2;     
+}
+
+message JWTResponse {
+        
+  int64    v1 = 1; 
+    JWTToken JWTToken = 2;     
+}
+
+message JWTRenewRequest {
+        
+  int64    v1 = 1; 
+  string     jwtToken = 2;     
+}
+
+message JWTRenewResponse {
+        
+  int64    v1 = 1; 
+    JWTToken JWTToken = 2;     
+}
+
+message JWTVerifyRequest {
+        
+  int64    v1 = 1; 
+  string    jwtToken = 2;     
+}
+
+message JWTVerifyResponse {
+        
+  int64    v1 = 1; 
+  string    status = 2;     
+}
+
+
+
+ 
+
+service JWTService {
+ 
+    rpc Create(JWTRequest) returns (JWTResponse){
+        option (google.api.http) = {
+            post: "/jwt/generate"
+           body: "*"  
+        };
+    }
+ 
+    rpc Update(JWTRenewRequest) returns (JWTRenewResponse){
+        option (google.api.http) = {
+            put: "/jwt/renew/{jwtToken}"
+           body: "*" 
+        };
+    }
+ 
+}

@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "JWT-service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/jwt/verify/{jwtToken}": {
+      "get": {
+        "operationId": "Read",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoJWTVerifyResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "jwtToken",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "v1",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "JWTService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protoJWTVerifyResponse": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

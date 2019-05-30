@@ -1,0 +1,138 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "JWT-service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/jwt/generate": {
+      "post": {
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoJWTResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/protoJWTRequest"
+            }
+          }
+        ],
+        "tags": [
+          "JWTService"
+        ]
+      }
+    },
+    "/jwt/renew/{jwtToken}": {
+      "put": {
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoJWTRenewResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "jwtToken",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/protoJWTRenewRequest"
+            }
+          }
+        ],
+        "tags": [
+          "JWTService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protoJWTRenewRequest": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "jwtToken": {
+          "type": "string"
+        }
+      }
+    },
+    "protoJWTRenewResponse": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "JWTToken": {
+          "$ref": "#/definitions/protoJWTToken"
+        }
+      }
+    },
+    "protoJWTRequest": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    },
+    "protoJWTResponse": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "JWTToken": {
+          "$ref": "#/definitions/protoJWTToken"
+        }
+      }
+    },
+    "protoJWTToken": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

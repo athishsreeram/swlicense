@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "EventStore-service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/es/all": {
+      "get": {
+        "operationId": "ReadAll",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoReadAllResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "v1",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventStoreService"
+        ]
+      }
+    },
+    "/es/{uuid}": {
+      "get": {
+        "operationId": "Read",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoReadResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "v1",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventStoreService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protoEventStore": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "protoReadAllResponse": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "eventStores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protoEventStore"
+          }
+        }
+      }
+    },
+    "protoReadResponse": {
+      "type": "object",
+      "properties": {
+        "v1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "eventStore": {
+          "$ref": "#/definitions/protoEventStore"
+        }
+      }
+    }
+  }
+}

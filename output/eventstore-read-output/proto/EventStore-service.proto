@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+
+    
+
+message EventStore {
+        
+  string    uuid = 1; 
+  string    event = 2; 
+  string    command = 3; 
+  string    data = 4;     
+}
+
+message ReadAllRequest {
+        
+  int64    v1 = 1;     
+}
+
+message ReadAllResponse {
+        
+  int64    v1 = 1; 
+repeated EventStore    eventStores = 2;     
+}
+
+message ReadRequest {
+        
+  int64    v1 = 1; 
+  string    uuid = 2;     
+}
+
+message ReadResponse {
+        
+  int64    v1 = 1; 
+    EventStore eventStore = 2;     
+}
+
+
+
+ 
+
+service EventStoreService {
+ 
+    rpc ReadAll(ReadAllRequest) returns (ReadAllResponse){
+        option (google.api.http) = {
+            get: "/es/all"
+         
+        };
+    }
+ 
+    rpc Read(ReadRequest) returns (ReadResponse){
+        option (google.api.http) = {
+            get: "/es/{uuid}"
+         
+        };
+    }
+
+
+}
