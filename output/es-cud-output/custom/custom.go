@@ -3,7 +3,7 @@ package custom
 import (
 	"fmt"
 	"log"
-	"output/es-cud-output/proto"
+	"swlicense/output/es-cud-output/proto"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"

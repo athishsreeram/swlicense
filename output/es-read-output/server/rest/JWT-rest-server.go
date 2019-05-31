@@ -7,7 +7,7 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"google.golang.org/grpc"
 
-	gw "output/es-read-output/proto"
+	gw "swlicense/output/es-read-output/proto"
 )
 
 func RunServer(ctx context.Context, grpcport string, httpport string) error {

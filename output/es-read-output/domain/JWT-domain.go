@@ -1,8 +1,8 @@
 package domain
 
 import (
-	cfg "output/es-read-output/config"
-	proto "output/es-read-output/proto"
+	cfg "swlicense/output/es-read-output/config"
+	proto "swlicense/output/es-read-output/proto"
 
 	"log"
 

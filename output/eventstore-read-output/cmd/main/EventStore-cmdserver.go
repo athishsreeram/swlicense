@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 
-	cfg "output/eventstore-read-output/config"
-	grpc "output/eventstore-read-output/server/grpc"
-	rest "output/eventstore-read-output/server/rest"
+	cfg "swlicense/output/eventstore-read-output/config"
+	grpc "swlicense/output/eventstore-read-output/server/grpc"
+	rest "swlicense/output/eventstore-read-output/server/rest"
 )
 
 // RunServer runs gRPC server and HTTP gateway

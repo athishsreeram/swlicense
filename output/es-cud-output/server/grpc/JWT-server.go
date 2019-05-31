@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 	"net"
-	"output/es-cud-output/proto"
-	v1 "output/es-cud-output/service/v1"
+	"swlicense/output/es-cud-output/proto"
+	v1 "swlicense/output/es-cud-output/service/v1"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

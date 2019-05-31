@@ -1,10 +1,10 @@
 package v1
 
 import (
-	"output/es-cud-output/client/nats/pub"
-	"output/es-cud-output/proto"
+	"swlicense/output/es-cud-output/client/nats/pub"
+	"swlicense/output/es-cud-output/proto"
 
-	cfg "output/es-cud-output/config"
+	cfg "swlicense/output/es-cud-output/config"
 
 	guuid "github.com/google/uuid"
 

@@ -7,9 +7,9 @@ import (
 	"os"
 	"runtime"
 
-	natscon "output/es-cud-output/client/nats/con"
-	cfg "output/es-cud-output/config"
-	"output/es-cud-output/servicetodomain"
+	natscon "swlicense/output/es-cud-output/client/nats/con"
+	cfg "swlicense/output/es-cud-output/config"
+	"swlicense/output/es-cud-output/servicetodomain"
 
 	"github.com/Jeffail/gabs"
 	"github.com/nats-io/go-nats"

@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 	"net"
-	"output/eventstore-read-output/proto"
-	v1 "output/eventstore-read-output/service/v1"
+	"swlicense/output/eventstore-read-output/proto"
+	v1 "swlicense/output/eventstore-read-output/service/v1"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

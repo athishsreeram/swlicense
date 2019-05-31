@@ -3,11 +3,11 @@ package servicetodomain
 import (
 	"encoding/json"
 	"log"
-	"output/es-cud-output/client/nats/pub"
-	cfg "output/es-cud-output/config"
-	"output/es-cud-output/custom"
-	"output/es-cud-output/domain"
-	"output/es-cud-output/proto"
+	"swlicense/output/es-cud-output/client/nats/pub"
+	cfg "swlicense/output/es-cud-output/config"
+	"swlicense/output/es-cud-output/custom"
+	"swlicense/output/es-cud-output/domain"
+	"swlicense/output/es-cud-output/proto"
 
 	"github.com/Jeffail/gabs"
 )

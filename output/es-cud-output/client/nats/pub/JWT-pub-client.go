@@ -5,8 +5,8 @@ import (
 	"log"
 
 	gabs "github.com/Jeffail/gabs"
-	natscon "output/es-cud-output/client/nats/con"
-	cfg "output/es-cud-output/config"
+	natscon "swlicense/output/es-cud-output/client/nats/con"
+	cfg "swlicense/output/es-cud-output/config"
 
 	"github.com/nats-io/go-nats"
 )

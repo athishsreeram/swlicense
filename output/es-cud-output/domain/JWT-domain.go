@@ -2,8 +2,8 @@ package domain
 
 import (
 	"log"
-	cfg "output/es-cud-output/config"
-	proto "output/es-cud-output/proto"
+	cfg "swlicense/output/es-cud-output/config"
+	proto "swlicense/output/es-cud-output/proto"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"

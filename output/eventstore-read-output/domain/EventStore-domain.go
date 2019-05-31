@@ -1,8 +1,8 @@
 package domain
 
 import (
-	cfg "output/eventstore-read-output/config"
-	proto "output/eventstore-read-output/proto"
+	cfg "swlicense/output/eventstore-read-output/config"
+	proto "swlicense/output/eventstore-read-output/proto"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"

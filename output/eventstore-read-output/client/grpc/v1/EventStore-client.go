@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	v1 "output/eventstore-read-output/proto"
+	v1 "swlicense/output/eventstore-read-output/proto"
 )
 
 func main() {

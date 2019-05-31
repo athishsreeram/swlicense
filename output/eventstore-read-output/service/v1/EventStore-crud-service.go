@@ -3,8 +3,8 @@ package v1
 import (
 	"context"
 	"log"
-	"output/eventstore-read-output/domain"
-	"output/eventstore-read-output/proto"
+	"swlicense/output/eventstore-read-output/domain"
+	"swlicense/output/eventstore-read-output/proto"
 	"strconv"
 )
 

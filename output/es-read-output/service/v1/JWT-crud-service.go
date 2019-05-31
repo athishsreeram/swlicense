@@ -3,9 +3,9 @@ package v1
 import (
 	"context"
 	"log"
-	"output/es-read-output/custom"
-	"output/es-read-output/domain"
-	"output/es-read-output/proto"
+	"swlicense/output/es-read-output/custom"
+	"swlicense/output/es-read-output/domain"
+	"swlicense/output/es-read-output/proto"
 )
 
 const (

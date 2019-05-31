@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 
-	cfg "output/es-cud-output/config"
-	grpc "output/es-cud-output/server/grpc"
-	rest "output/es-cud-output/server/rest"
+	cfg "swlicense/output/es-cud-output/config"
+	grpc "swlicense/output/es-cud-output/server/grpc"
+	rest "swlicense/output/es-cud-output/server/rest"
 )
 
 // RunServer runs gRPC server and HTTP gateway

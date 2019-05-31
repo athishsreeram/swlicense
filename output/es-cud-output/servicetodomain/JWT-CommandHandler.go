@@ -2,10 +2,10 @@ package servicetodomain
 
 import (
 	"log"
-	"output/es-cud-output/client/nats/pub"
+	"swlicense/output/es-cud-output/client/nats/pub"
 
-	cfg "output/es-cud-output/config"
-	"output/es-cud-output/domain"
+	cfg "swlicense/output/es-cud-output/config"
+	"swlicense/output/es-cud-output/domain"
 
 	"github.com/Jeffail/gabs"
 )

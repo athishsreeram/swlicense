@@ -6,7 +6,7 @@ import (
 	"github.com/Jeffail/gabs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
-	cfg "output/es-cud-output/config"
+	cfg "swlicense/output/es-cud-output/config"
 )
 
 type EventStores struct {
