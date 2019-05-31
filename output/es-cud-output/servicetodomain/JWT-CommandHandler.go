@@ -4,9 +4,10 @@ import (
 	"log"
 	"output/es-cud-output/client/nats/pub"
 
-	"github.com/Jeffail/gabs"
 	cfg "output/es-cud-output/config"
 	"output/es-cud-output/domain"
+
+	"github.com/Jeffail/gabs"
 )
 
 func JWTCommandToEvent(data string) {
@@ -17,15 +18,15 @@ func JWTCommandToEvent(data string) {
 	log.Println("%s %s", key, msg)
 	domain.CreateCommand(string(jsonObj.Bytes()))
 
-	if key == "JWTTokenCreateCommand" {
+	if key == "JWTTokenCreatedCommand" {
 
-		pub.SendMsgStr(cfg.Conf.NATSSubj, "JWTDomainsEventCreated", "event", data)
+		pub.SendMsgStr(cfg.Conf.NATSSubj, "JWTTokenDomainsEventCreated", "event", data)
 
 	}
 
-	if key == "JWTTokenUpdateCommand" {
+	if key == "JWTTokenUpdatedCommand" {
 
-		pub.SendMsgStr(cfg.Conf.NATSSubj, "JWTDomainsEventUpdated", "event", data)
+		pub.SendMsgStr(cfg.Conf.NATSSubj, "JWTTokenDomainsEventUpdated", "event", data)
 
 	}
 

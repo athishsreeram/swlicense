@@ -11,15 +11,18 @@ import (
 
 var mySigningKey = []byte("gog")
 
-func CreateToken(user string) *proto.JWTToken {
+func CreateToken(uuid string, user string) *proto.JWTToken {
 
-	token := jwt.New(jwt.SigningMethodHS256)
+	claims := jwt.MapClaims{
+		"uuid":       uuid,
+		"authorized": true,
+		"client":     user,
+		"exp":        time.Now().Add(time.Hour * 24).Unix(),
+	}
 
-	claims := token.Claims.(jwt.MapClaims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	claims["authorized"] = true
-	claims["client"] = user
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
+	log.Println(claims)
 
 	tokenString, err := token.SignedString(mySigningKey)
 
@@ -51,8 +54,10 @@ func VerifyJWT(tokenString string) string {
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
 		return mySigningKey, nil
 	})
-
-	panic(err)
+	if err != nil {
+		fmt.Errorf("Something Went Wrong: %s", err.Error())
+		panic(err)
+	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		log.Println(claims)

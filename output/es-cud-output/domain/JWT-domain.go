@@ -14,8 +14,8 @@ var engine *xorm.Engine
 var conn = "root:@tcp(localhost:3306)/GOGENETIC_SCHEMA?charset=utf8&parseTime=True&loc=Local"
 
 type JWTTokenDomains struct {
-	token string `mapstructure:"Token"`
-	user  string `mapstructure:"User"`
+	User  string `mapstructure:"User"`
+	Token string `mapstructure:"Token"`
 }
 
 func ReadAllJWTTokenDomains() []JWTTokenDomains {
@@ -38,7 +38,7 @@ func ReadJWTTokenDomains(jwttoken string) JWTTokenDomains {
 	var err error
 	engine, err = xorm.NewEngine("mysql", cfg.Conf.DBCon)
 
-	var jWTTokenDomains = JWTTokenDomains{token: jwttoken}
+	var jWTTokenDomains = JWTTokenDomains{Token: jwttoken}
 	has, err := engine.Get(&jWTTokenDomains)
 	log.Println("{}", jWTTokenDomains)
 	if err != nil {
@@ -65,11 +65,11 @@ func CreateJWTTokenDomains(jWTTokenDomains JWTTokenDomains) JWTTokenDomains {
 
 }
 
-func DeleteJWTTokenDomains(Sno int) JWTTokenDomains {
+func DeleteJWTTokenDomains(user string) JWTTokenDomains {
 	var err error
 	engine, err = xorm.NewEngine("mysql", cfg.Conf.DBCon)
 
-	var jWTTokenDomains = JWTTokenDomains{Sno: Sno}
+	var jWTTokenDomains = JWTTokenDomains{User: user}
 	engine.Delete(&jWTTokenDomains)
 
 	if err != nil {
@@ -80,7 +80,7 @@ func DeleteJWTTokenDomains(Sno int) JWTTokenDomains {
 	return jWTTokenDomains
 }
 
-func UpdateJWTTokenDomains(Sno int, jWTTokenDomains JWTTokenDomains) JWTTokenDomains {
+func UpdateJWTTokenDomains(jWTTokenDomains JWTTokenDomains) JWTTokenDomains {
 	var err error
 	engine, err = xorm.NewEngine("mysql", cfg.Conf.DBCon)
 

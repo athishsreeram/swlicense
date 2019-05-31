@@ -27,10 +27,6 @@ func JWTEventProcesing(data string) {
 		pub.Send(cfg.Conf.NATSSubj, "JWTTokenDomainsEventUpdateCompleted", "event", UpdateProcessing(key, msg), jsonObj.Search("uuid").Data().(string))
 	}
 
-	if key == "JWTTokenDomainsEventReadd" {
-		pub.Send(cfg.Conf.NATSSubj, "JWTTokenDomainsEventReadCompleted", "event", ReadProcessing(key, msg), jsonObj.Search("uuid").Data().(string))
-	}
-
 }
 
 func CreateProcessing(key string, msg string) *proto.JWTToken {
@@ -42,13 +38,14 @@ func CreateProcessing(key string, msg string) *proto.JWTToken {
 	}
 
 	log.Println("DTO Data", user.User)
+	jsonObj, _ := gabs.ParseJSON([]byte(msg))
+	token := custom.CreateToken(jsonObj.Search("uuid").Data().(string), user.User)
+	log.Println("DTO Data %v", token)
+	jWTTokenDomains := domain.ConvertJWTToken2JWTTokenDomains(token)
 
-	dom := custom.CreateToken(user.User)
-
-	jWTTokenDomains := domain.ConvertJWTToken2JWTTokenDomains(dom)
 	log.Println("Domain Data ", jWTTokenDomains)
 	persistedDomain := domain.CreateJWTTokenDomains(jWTTokenDomains)
-	jsonObj, _ := gabs.ParseJSON([]byte(msg))
+
 	createEvent(jsonObj.Search("event").Data().(string), persistedDomain, jsonObj.Search("uuid").Data().(string), jsonObj.Search("command").Data().(string))
 	JWTToken := domain.ConvertJWTTokenDomains2JWTToken(persistedDomain)
 	return JWTToken
@@ -63,12 +60,13 @@ func UpdateProcessing(key string, msg string) *proto.JWTToken {
 		log.Println(err)
 	}
 
-	jWTTokenResp = domain.ConvertJWTTokenDomains2JWTToken(domain.ReadJWTTokenDomains(dat.JwtToken))
-
-	dom := custom.CreateToken(jWTTokenResp.User)
-
-	persistedDomain := domain.UpdateJWTTokenDomains(dom.User, dom)
+	jWTTokenResp := domain.ConvertJWTTokenDomains2JWTToken(domain.ReadJWTTokenDomains(dat.JwtToken))
 	jsonObj, _ := gabs.ParseJSON([]byte(msg))
+	token := custom.CreateToken(jsonObj.Search("uuid").Data().(string), jWTTokenResp.User)
+
+	jWTTokenDomains := domain.ConvertJWTToken2JWTTokenDomains(token)
+
+	persistedDomain := domain.UpdateJWTTokenDomains(jWTTokenDomains)
 	createEvent(jsonObj.Search("event").Data().(string), persistedDomain, jsonObj.Search("uuid").Data().(string), jsonObj.Search("command").Data().(string))
 	JWTToken := domain.ConvertJWTTokenDomains2JWTToken(persistedDomain)
 	return JWTToken

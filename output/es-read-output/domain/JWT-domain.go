@@ -14,8 +14,8 @@ import (
 var engine *xorm.Engine
 
 type JWTTokenDomains struct {
-	token string `mapstructure:"Token"`
-	user  string `mapstructure:"User"`
+	User  string `mapstructure:"User"`
+	Token string `mapstructure:"Token"`
 }
 
 func ReadAllJWTTokenDomains() []JWTTokenDomains {
@@ -38,7 +38,7 @@ func ReadJWTTokenDomains(jwttoken string) JWTTokenDomains {
 	var err error
 	engine, err = xorm.NewEngine("mysql", cfg.Conf.DBCon)
 
-	var jWTTokenDomains = JWTTokenDomains{token: jwttoken}
+	var jWTTokenDomains = JWTTokenDomains{Token: jwttoken}
 	has, err := engine.Get(&jWTTokenDomains)
 	log.Println("{}", jWTTokenDomains)
 	if err != nil {

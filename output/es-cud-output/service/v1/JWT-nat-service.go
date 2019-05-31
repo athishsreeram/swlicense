@@ -29,7 +29,7 @@ func NewJWTServiceServer() proto.JWTServiceServer {
 // Create new todo task
 func (s *jwtServer) Create(ctx context.Context, req *proto.JWTRequest) (*proto.JWTResponse, error) {
 	uuid := guuid.New().String()
-	pub.Send(cfg.Conf.NATSSubj, "JWTCreateCommand", "command", req, uuid)
+	pub.Send(cfg.Conf.NATSSubj, "JWTTokenCreatedCommand", "command", req, uuid)
 
 	var resp *proto.JWTResponse
 
@@ -49,7 +49,7 @@ func (s *jwtServer) Create(ctx context.Context, req *proto.JWTRequest) (*proto.J
 // Create new todo task
 func (s *jwtServer) Update(ctx context.Context, req *proto.JWTRenewRequest) (*proto.JWTRenewResponse, error) {
 	uuid := guuid.New().String()
-	pub.Send(cfg.Conf.NATSSubj, "JWTUpdateCommand", "command", req, uuid)
+	pub.Send(cfg.Conf.NATSSubj, "JWTTokenUpdatedCommand", "command", req, uuid)
 
 	var resp *proto.JWTRenewResponse
 

@@ -25,13 +25,15 @@ func VerifyJWT(tokenString string) string {
 		return mySigningKey, nil
 	})
 
-	panic(err)
-
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		log.Println(claims)
-		return "valid"
-	} else {
+	if err != nil {
+		log.Println(token)
+		log.Println(err)
 		return "invalid"
+	} else {
+		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			log.Println(claims)
+			return "valid"
+		}
 	}
-
+	return "nil"
 }
